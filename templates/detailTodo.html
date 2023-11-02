@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.data.Title}}</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .field{
+            display: flex;
+            flex-direction: row;
+            margin: 0.3rem;
+        }
+        .label{
+            width: 4rem;
+        }
+        .updateBtn{
+            margin: 0.3rem;
+            padding: 0.5rem 0.6rem;
+            color: white;
+            background-color: blue;
+            border: none;
+            width: 6.2rem;
+        }
+        .deleteBtn{
+            margin: 0.3rem;
+            padding: 0.5rem 0.6rem;
+            color: white;
+            background-color: red;
+            border: none;
+            width: 6.2rem;
+        }
+    </style>
+</head>
+<body>
+    <form action="/updateTasks/{{.data.ID}}" method="post">
+        <div class="field">
+            <label class="label">Task</label>
+            <div class="control">
+                <input type="text" class="input" placeholder="Add Task's Name" name="title" value={{.data.Title}} required>
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">Due Date</label>
+            <div class="control">
+                <input type="date" class="input" placeholder="Add Deadline" name="due_date" value={{.data.DueDate}} required>
+            </div>
+        </div>
+        <button class="updateBtn">Update</button>
+    </form>
+    <form action="/deleteTasks/{{.data.ID}}" method="post">
+        <button class="deleteBtn">Delete</button>
+    </form>
+</body>
+</html>

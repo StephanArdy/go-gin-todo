@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>To-Do List</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .title{
+            text-align: center;
+            margin: 1.3rem;
+        }
+        .addTodo{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            column-gap: 1rem;
+        }
+        .addTodo input{
+            padding: 0.5rem 0.6rem;
+        }
+        .addTodo button{
+            color: white;
+            background-color: green;
+            border: none;
+            padding: 0.5rem 0.6rem;
+        }
+        .todo, th, td{
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 5px;
+        }
+
+        ul{
+            list-style-type: none;
+        }
+        li a{
+            text-decoration: none;
+            color: black;
+        }
+        .center{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 1.3rem 1rem;
+        }
+        .note{
+            text-align: center;
+            color: grey;
+            margin: 0.3rem;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="title">To-Do List</h1>
+    <form action="/tasks" method="post" class="addTodo">
+        <input type="text" value="{{.Title}}" name="title" placeholder="Add New Task">
+        <input type="date" value="{{.DueDate}}" name="due_date" placeholder="Add Due Date">
+        <button type="submit">ADD</button>
+    </form>
+    <p class="note">*Note: Click task to make changes</p>
+    <div class="center">
+        <table class="todo">
+            <tr class="header">
+                <th>Todo</th>
+                <th>Due Date</th>
+                <th>Created At</th>
+            </tr>
+            {{range .data}}
+            <tr class="content">
+                <td>
+                    <ul>
+                        <li>
+                            <a href="/tasks/{{.ID}}">
+                                {{.Title}}
+                            </a>
+                        </li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>
+                            {{.DueDate}}
+                        </li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>
+                            {{.CreatedAt}}
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+            {{end}}
+        </table>
+    </div>
+</body>
+</html>
